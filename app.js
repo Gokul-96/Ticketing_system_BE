@@ -1,15 +1,25 @@
-const express = require('express');
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
+import cors from "cors";
+import Ticket from "./models/ticketModel.js";
+
+// routes
+import userRoute from "./routes/userRoute.js";
+import ticketRoute from "./routes/ticketRoute.js";
+
+dotenv.config();
+connectDB();
 
 const app = express();
-
-const cors = require('cors');
 app.use(cors());
+app.use(express.json());
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use("/api/users", userRoute);
+app.use("/api/tickets", ticketRoute);
 
+app.use(notFound);
+app.use(errorHandler);
 
-
-
-
-module.exports =app;
+export default app;
