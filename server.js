@@ -1,11 +1,12 @@
 const config = require('./utils/config');
-const mongoose = require ('mongoose');
-const app = require('./app');
-import { Server } from "socket.io";
+const mongoose = require ('mongoose'); //import monggose for mongoDB interaction
+const app = require('./app'); //express application import here
+import { Server } from "socket.io"; //websocket connection handling
 
 const connectedSockets = new Set();
 
-export const io = new Server(server, {
+//Initialize socket.io with server
+export const io = new Server(app, {
   cors: {
     origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"],

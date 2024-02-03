@@ -1,6 +1,5 @@
 import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
+
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import cors from "cors";
 import Ticket from "./models/ticketModel.js";
